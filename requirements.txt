@@ -1,0 +1,4 @@
+ollama
+esprima
+typing-extensions
+pycparser

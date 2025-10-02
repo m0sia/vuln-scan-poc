@@ -1,0 +1,42 @@
+[compiler]
+# Real compiler to forward commands to
+# "auto" will try to detect based on wrapper name and PATH
+real_cc = "auto"
+
+# Preprocessor to use for pycparser compatibility
+# clang generally produces cleaner output than gcc -E
+pp = "clang"
+
+[paths]
+# Path to pycparser fake libc include directory
+fake_libc_include = "./fake_libc_include"
+
+# Root directory for build wrapper analysis outputs
+out_root = "./output/build-wrapper"
+
+[analysis]
+# Whether to run vulnerability analysis after preprocessing
+run_analyzer = false
+
+# LLM model for detailed vulnerability analysis
+model = "qwen2.5-coder:32b"
+
+# Fast LLM model for risk assessment
+risk_model = "qwen2.5-coder:1.5b"
+
+# Enable debug output for LLM interactions
+debug = false
+
+# Ollama host (local or remote)
+ollama_host = "http://localhost:11434"
+
+# Enable crypto-focused analysis patterns (can be disabled for general use)
+crypto_focus = false
+
+[build]
+# Environment variables to pass through during compilation
+pass_through_env = ["CFLAGS", "CPPFLAGS", "CC", "CXX"]
+
+# Enable caching of preprocessed files
+enable_caching = true
+
