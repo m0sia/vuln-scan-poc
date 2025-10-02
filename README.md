@@ -75,9 +75,9 @@ Test the build integration using the included vulnerable C project:
 # Navigate to the vulnerable C project
 cd tests/vulnerable-c-project
 
-# Run analysis during build using the wrapper script
-../../tools/build-with-analysis.sh make clean
-../../tools/build-with-analysis.sh make
+# Run analysis during build using the Python wrapper
+python ../../tools/build-with-analysis.py make clean
+python ../../tools/build-with-analysis.py make
 
 # View results
 find ../../output/build-wrapper -name "*.analysis.json" -exec echo "=== {} ===" \; -exec cat {} \;
@@ -102,18 +102,18 @@ python vuln_analyzer.py --file crypto_code.c --output results.json --crypto-focu
 
 The build wrapper intercepts compilation commands and automatically analyzes C code during builds:
 
-#### Method 1: Using Build Wrapper Script (Recommended)
+#### Method 1: Using Build Wrapper (Recommended)
 ```bash
 # In your C project directory - this creates temporary compiler wrappers
-/path/to/vuln-scan-poc/tools/build-with-analysis.sh make clean
-/path/to/vuln-scan-poc/tools/build-with-analysis.sh make
+python /path/to/vuln-scan-poc/tools/build-with-analysis.py make clean
+python /path/to/vuln-scan-poc/tools/build-with-analysis.py make
 
 # For CMake projects
-/path/to/vuln-scan-poc/tools/build-with-analysis.sh cmake --build .
+python /path/to/vuln-scan-poc/tools/build-with-analysis.py cmake --build .
 
 # For autotools
-/path/to/vuln-scan-poc/tools/build-with-analysis.sh ./configure
-/path/to/vuln-scan-poc/tools/build-with-analysis.sh make
+python /path/to/vuln-scan-poc/tools/build-with-analysis.py ./configure
+python /path/to/vuln-scan-poc/tools/build-with-analysis.py make
 ```
 
 #### Method 2: Export CC Variable
@@ -310,8 +310,8 @@ python vuln_analyzer.py --file tests/test_typescript.ts --output output/test_ts.
 
 # Test C build integration with vulnerable project
 cd tests/vulnerable-c-project
-../../tools/build-with-analysis.sh make clean
-../../tools/build-with-analysis.sh make
+python ../../tools/build-with-analysis.py make clean
+python ../../tools/build-with-analysis.py make
 ```
 
 ### 🔧 Troubleshooting Common Issues
@@ -447,7 +447,7 @@ python vuln_analyzer.py --file crypto_code.c --output results.json --crypto-focu
 python vuln_analyzer.py --file code.py --output results.json
 
 # C Build Integration (Recommended Method)
-/path/to/tools/build-with-analysis.sh make
+python /path/to/tools/build-with-analysis.py make
 
 # View Recent Results
 find output/ -name "*.json" -mtime -1 -exec cat {} \;
